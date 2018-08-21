@@ -28,6 +28,19 @@ export class HomePage {
 
     toast.present();
   }
+  removeFoodDoneMessage() {
+    let toast = this.toastCtrl.create({
+      message: 'Food was removed successfully',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
   deleteFood(fd: Food){
     let alert = this.atrCtrl.create({
     title: 'Confirm Delete',
@@ -41,6 +54,8 @@ export class HomePage {
         text: 'Yes',
         handler: () => {
           this.listFood.splice(this.listFood.indexOf(fd),1);
+          this.storage.storeData(this.listFood);
+          this.removeFoodDoneMessage();
           //console.log(this.listFood);
         }
       }
