@@ -31,7 +31,7 @@
 
     <ion-item class="category-list" *ngFor="let food of listFood">
       <div class="category-frame">
-        <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood()">Delete</span></h2>
+        <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood(food)">Delete</span></h2>
       </div>
       <ion-grid>
         <ion-row>

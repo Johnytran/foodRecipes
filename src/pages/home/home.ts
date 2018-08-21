@@ -28,6 +28,26 @@ export class HomePage {
 
     toast.present();
   }
+  deleteFood(fd: Food){
+    let alert = this.atrCtrl.create({
+    title: 'Confirm Delete',
+    message: 'Delete this food?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.listFood.splice(this.listFood.indexOf(fd),1);
+          //console.log(this.listFood);
+        }
+      }
+    ]
+    });
+    alert.present();
+  }
   addFood(fName:string){
     let aFood = new Food(fName);
     this.listFood.push(aFood);
@@ -50,7 +70,7 @@ export class HomePage {
           role: 'cancel',
         },
         {
-          text: 'Add',
+          text: ' Add ',
           handler: data => {
             if (data.foodname.trim().length >0) {
               this.addFood(data.foodname);
