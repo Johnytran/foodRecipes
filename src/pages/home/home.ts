@@ -1,16 +1,41 @@
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
+import { Food } from '../../models/food'
+import { FoodProvider} from '../../providers/food/food';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public atrCtrl: AlertController) {
-
+  public listFood: Array<Food> = [];
+  constructor(public atrCtrl: AlertController, public storage: FoodProvider, private toastCtrl: ToastController) {
+    if(this.storage.readData()){
+      this.listFood = this.storage.readData();
+    }
   }
-  showPromptAlert() {
+  addFoodDoneMessage() {
+    let toast = this.toastCtrl.create({
+      message: 'Food was added successfully',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  addFood(fName:string){
+    let aFood = new Food(fName);
+    this.listFood.push(aFood);
+    this.storage.storeData(this.listFood);
+    this.addFoodDoneMessage();
+  }
+  showAddFood() {
+
     let alert = this.atrCtrl.create({
       title: 'Add a food',
       inputs: [
@@ -23,17 +48,15 @@ export class HomePage {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: data => {
-            console.log('You Clicked on Cancel');
-          }
         },
         {
           text: 'Add',
           handler: data => {
-            if (User.isValid(data.username)) {
-              // login is valid
+            if (data.foodname.trim().length >0) {
+              this.addFood(data.foodname);
+              data.foodname = '';
             } else {
-              // invalid login
+
               return false;
             }
           }

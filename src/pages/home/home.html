@@ -4,7 +4,7 @@
       <ion-col><img width="100" src="../../assets/imgs/logo.png"/></ion-col>
       <ion-col><span class="logo">Recipes</span></ion-col>
       <ion-col align="right">
-        <button class = "addFood" (click)="showPromptAlert()">Add Food</button>
+        <button class = "addFood" (click)="showAddFood()">Add Food</button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -28,9 +28,10 @@
     </ion-grid>
   </form>
   <ion-list>
-    <ion-item class="category-list">
+
+    <ion-item class="category-list" *ngFor="let food of listFood">
       <div class="category-frame">
-        <h2>Food 1</h2>
+        <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood()">Delete</span></h2>
       </div>
       <ion-grid>
         <ion-row>
@@ -45,28 +46,6 @@
       </ion-grid>
 
 
-    </ion-item>
-
-    <ion-item class="category-list">
-      <div class="category-frame">
-        <h2>Food 1</h2>
-      </div>
-      <ion-grid>
-        <ion-row>
-          <ion-col>ddd</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>ss</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>ddd</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item class="category-list">
-      <div class="category-frame">
-        <h2>Food 1</h2>
-      </div>
     </ion-item>
   </ion-list>
 
