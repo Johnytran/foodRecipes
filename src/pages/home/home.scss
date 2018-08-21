@@ -1,3 +1,85 @@
 page-home {
+  .addFood{
+    padding: 10px;
+    background: #caa17d;
+    font-family: 'blokletters_balpenbalpen';
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  textarea.note{
+    width: 100%;
+    height: 120px;
+    border: 9px solid transparent;
+    border-image: url(../../assets/template/textarea-side.png) 30 round;
+    border-top: 0;
+    border-bottom: 0;
+    font-family: 'blokletters_balpenbalpen';
+  }
+  .textarea-frame{
+    padding: 0;
+    border: 9px solid transparent;
+    border-image: url(../../assets/template/textarea-border.png) 30 round;
+    border-left: 0;
+    border-right: 0;
+  }
+  .plus_btn{
+    background: url(../../assets/template/circle.png) no-repeat;
+    width: 45px;
+    height: 45px;
+    border: 0;
+  }
+  .category-list{
+    width: 100%;
+    border: 0 !important;
+    .category-frame{
+      border: 9px solid transparent;
+      border-image: url(../../assets/template/textarea-border.png) 15 round;
+      font-family: 'blokletters_balpenbalpen';
+      padding: 5px;
+      background: url(../../assets/template/expand.png) no-repeat;
+      border-left: 0;
+      border-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+      h2{
+        width: 100%;
+        height: 20px;
+        border: 9px solid transparent;
+        border-image: url(../../assets/template/textarea-side.png) 15 round;
+        border-top: 0;
+        border-bottom: 0;
+        padding: 0 10px;
+      }
+    }
+  }
 
+}
+.alert-md .alert-wrapper{
+  background: url(../../assets/template/alert_bg.png) no-repeat;
+  background-size: 252px 198px;
+  font-family: 'blokletters_balpenbalpen';
+  h2{
+
+    font-weight: bold;
+  }
+  .alert-input{
+    background: url(../../assets/template/alert_input.png) no-repeat;
+    border: 0;
+    background-size: 200px 39px;
+    padding: 10px;
+  }
+}
+.alert-md .alert-button-group{
+  justify-content: flex-start;
+  button{
+    background: url(../../assets/template/alert_btn.png) no-repeat;
+    border: 0;
+    background-size: 80px 40px;
+    span{
+      color: black;
+    }
+  }
+  button:last-child{
+    background-size: 54px 40px;
+  }
 }

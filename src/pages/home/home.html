@@ -1,17 +1,73 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col><img width="100" src="../../assets/imgs/logo.png"/></ion-col>
+      <ion-col><span class="logo">Recipes</span></ion-col>
+      <ion-col align="right">
+        <button class = "addFood" (click)="showPromptAlert()">Add Food</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <form>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="textarea-frame">
+            <textarea name="note" class="note" placeholder="Write new things"></textarea>
+        </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col align="center">
+          <button ion-button class="plus_btn" (click) = "addNewRecipe()"></button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <ion-list>
+    <ion-item class="category-list">
+      <div class="category-frame">
+        <h2>Food 1</h2>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>ddd</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>ss</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>ddd</ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+    </ion-item>
+
+    <ion-item class="category-list">
+      <div class="category-frame">
+        <h2>Food 1</h2>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>ddd</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>ss</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>ddd</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="category-list">
+      <div class="category-frame">
+        <h2>Food 1</h2>
+      </div>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
