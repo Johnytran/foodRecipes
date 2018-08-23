@@ -34,14 +34,8 @@
         <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood(food)">Delete</span></h2>
       </div>
       <ion-grid>
-        <ion-row>
-          <ion-col>ddd</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>ss</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>ddd</ion-col>
+        <ion-row *ngFor="let recipe of listRecipe">
+          <ion-col>{{recipe.name}}</ion-col>
         </ion-row>
       </ion-grid>
 

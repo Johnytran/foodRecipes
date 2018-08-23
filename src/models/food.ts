@@ -5,7 +5,7 @@ export class Food{
   constructor(name){
     this.name = name;
   }
-  addNewRecipe(rcp: Recipe){
+  addRecipe(rcp: Recipe){
     this.elements.push(rcp);
   }
 }

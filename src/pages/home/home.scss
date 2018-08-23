@@ -53,35 +53,83 @@ page-home {
     }
   }
 }
-.alert-md .alert-wrapper{
-  background: url(../../assets/template/alert_bg.png) no-repeat;
-  background-size: 252px 198px;
-  font-family: 'blokletters_balpenbalpen';
-  h2{
+.addFood{
+  .alert-wrapper{
+    background: url(../../assets/template/alert_bg.png) no-repeat;
+    background-size: 252px 198px;
+    font-family: 'blokletters_balpenbalpen';
+    h2{
 
-    font-weight: bold;
+      font-weight: bold;
+    }
+    .alert-input{
+      background: url(../../assets/template/alert_input.png) no-repeat;
+      border: 0;
+      background-size: 200px 39px;
+      padding: 10px;
+    }
   }
-  .alert-input{
-    background: url(../../assets/template/alert_input.png) no-repeat;
-    border: 0;
-    background-size: 200px 39px;
-    padding: 10px;
+  .alert-button-group{
+    justify-content: flex-start;
+    button{
+      background: url(../../assets/template/alert_btn.png) no-repeat;
+      border: 0;
+      background-size: 80px 40px;
+      span{
+        color: black;
+      }
+    }
+    button:last-child{
+      background-size: 53px 40px;
+    }
   }
 }
-.alert-md .alert-button-group{
-  justify-content: flex-start;
-  button{
-    background: url(../../assets/template/alert_btn.png) no-repeat;
-    border: 0;
-    background-size: 80px 40px;
-    span{
+
+.addRecipe{
+  .alert-wrapper{
+    background: url(../../assets/template/recipe_bg.png) no-repeat;
+    background-size: 250px 366px;
+    font-family: 'blokletters_balpenbalpen';
+    h2{
+
+      font-weight: bold;
+    }
+    .alert-input{
+      background: url(../../assets/template/alert_input.png) no-repeat;
+      border: 0;
+      background-size: 200px 39px;
+      padding: 10px;
+      color: black;
+    }
+    .alert-radio-icon{
+      border-color: black;
+      .alert-radio-inner{
+        background: black;
+      }
+    }
+    .alert-radio-group{
+      border-color: black;
+    }
+    .alert-radio-label{
       color: black;
     }
   }
-  button:last-child{
-    background-size: 53px 40px;
+  .alert-button-group{
+    justify-content: flex-start;
+    button{
+      background: url(../../assets/template/alert_btn.png) no-repeat;
+      border: 0;
+      background-size: 80px 40px;
+      span{
+        color: black;
+      }
+    }
+    button:last-child{
+      background-size: 44px 40px;
+    }
   }
 }
+
 .deleteFood{
   font-family: 'blokletters_balpenbalpen';
   float: right;

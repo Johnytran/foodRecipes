@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Food } from '../../models/food'
+import { Recipe } from '../../models/recipe'
 import { FoodProvider} from '../../providers/food/food';
 import { ToastController } from 'ionic-angular';
 
@@ -10,16 +11,40 @@ import { ToastController } from 'ionic-angular';
 })
 export class HomePage {
   public listFood: Array<Food> = [];
+  public listRecipe: Array<Recipe> = [];
   constructor(public atrCtrl: AlertController, public storage: FoodProvider, private toastCtrl: ToastController) {
     if(this.storage.readData()){
       this.listFood = this.storage.readData();
     }
   }
+  addNewRecipe(){
+    let alert = this.atrCtrl.create({cssClass: "addRecipe"});
+    alert.setTitle('Food selection');
+
+    this.listFood.forEach((food)=>{
+      alert.addInput({
+        type: 'radio',
+        label: food.name,
+        value: food
+      });
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+        console.log(data);
+      }
+    });
+    alert.present();
+  }
   addFoodDoneMessage() {
     let toast = this.toastCtrl.create({
       message: 'Food was added successfully',
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
 
     toast.onDidDismiss(() => {
@@ -79,6 +104,8 @@ export class HomePage {
           placeholder: 'Food name'
         }
       ],
+      cssClass: "addFood"
+      ,
       buttons: [
         {
           text: 'Cancel',
