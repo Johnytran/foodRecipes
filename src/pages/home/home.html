@@ -16,7 +16,7 @@
       <ion-row>
         <ion-col>
           <div class="textarea-frame">
-            <textarea name="note" class="note" placeholder="Write new things"></textarea>
+            <ion-textarea name="note" class="note" placeholder="Write new things" [(ngModel)]="note_recipe"></ion-textarea>
         </div>
         </ion-col>
       </ion-row>
@@ -32,9 +32,10 @@
     <ion-item class="category-list" *ngFor="let food of listFood">
       <div class="category-frame">
         <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood(food)">Delete</span></h2>
+
       </div>
       <ion-grid>
-        <ion-row *ngFor="let recipe of listRecipe">
+        <ion-row *ngFor="let recipe of recipes">
           <ion-col>{{recipe.name}}</ion-col>
         </ion-row>
       </ion-grid>

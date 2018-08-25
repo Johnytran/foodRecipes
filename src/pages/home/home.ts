@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
+import { Greeter } from '../../models/greet'
 import { FoodProvider} from '../../providers/food/food';
 import { ToastController } from 'ionic-angular';
 
@@ -11,11 +12,12 @@ import { ToastController } from 'ionic-angular';
 })
 export class HomePage {
   public listFood: Array<Food> = [];
-  public listRecipe: Array<Recipe> = [];
+  note_recipe: string='';
   constructor(public atrCtrl: AlertController, public storage: FoodProvider, private toastCtrl: ToastController) {
     if(this.storage.readData()){
       this.listFood = this.storage.readData();
     }
+    //console.log(this.listFood);
   }
   addNewRecipe(){
     let alert = this.atrCtrl.create({cssClass: "addRecipe"});
@@ -35,7 +37,23 @@ export class HomePage {
       handler: data => {
         this.testRadioOpen = false;
         this.testRadioResult = data;
-        console.log(data);
+        //console.log(JSON.stringify(this.listFood));
+        if(this.note_recipe.trim().length >0){
+          this.listFood.forEach((item)=>{
+            console.log(JSON.stringify(item.recipes));
+            if(item.name == data.name){
+              let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+              if(item.recipes.push(tempRecipe)){
+                this.addRecipeDoneMessage();
+              }
+              console.log(JSON.stringify(item));
+
+            }
+            // console.log(JSON.stringify(item));
+          });
+          this.storage.storeData(this.listFood);
+        }
+        //console.log(this.listFood);
       }
     });
     alert.present();
@@ -43,6 +61,19 @@ export class HomePage {
   addFoodDoneMessage() {
     let toast = this.toastCtrl.create({
       message: 'Food was added successfully',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  addRecipeDoneMessage() {
+    let toast = this.toastCtrl.create({
+      message: 'Recipe was added successfully',
       duration: 3000,
       position: 'bottom'
     });
@@ -70,6 +101,8 @@ export class HomePage {
     let alert = this.atrCtrl.create({
     title: 'Confirm Delete',
     message: 'Delete this food?',
+    cssClass: "addFood"
+    ,
     buttons: [
       {
         text: 'Cancel',
@@ -89,7 +122,8 @@ export class HomePage {
     alert.present();
   }
   addFood(fName:string){
-    let aFood = new Food(fName);
+    let aFood:Food = new Food(fName);
+    //console.log(JSON.stringify(aFood));
     this.listFood.push(aFood);
     this.storage.storeData(this.listFood);
     this.addFoodDoneMessage();
