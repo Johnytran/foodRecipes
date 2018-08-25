@@ -17,7 +17,7 @@ export class HomePage {
     if(this.storage.readData()){
       this.listFood = this.storage.readData();
     }
-    //console.log(this.listFood);
+    //console.log(JSON.stringify(this.listFood));
   }
   addNewRecipe(){
     let alert = this.atrCtrl.create({cssClass: "addRecipe"});
@@ -45,8 +45,9 @@ export class HomePage {
               let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
               if(item.recipes.push(tempRecipe)){
                 this.addRecipeDoneMessage();
+                this.note_recipe = "";
               }
-              console.log(JSON.stringify(item));
+              //console.log(JSON.stringify(item));
 
             }
             // console.log(JSON.stringify(item));

@@ -29,13 +29,13 @@
   </form>
   <ion-list>
 
-    <ion-item class="category-list" *ngFor="let food of listFood">
+    <ion-item class="category-list" *ngFor="let food of listFood" ng-init="recipes = food.recipes">
       <div class="category-frame">
         <h2>{{food.name}} <span class="deleteFood" (click) = "deleteFood(food)">Delete</span></h2>
 
       </div>
       <ion-grid>
-        <ion-row *ngFor="let recipe of recipes">
+        <ion-row *ngFor="let recipe of food.recipes">
           <ion-col>{{recipe.name}}</ion-col>
         </ion-row>
       </ion-grid>
