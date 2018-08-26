@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Food } from '../../models/food';
 /*
@@ -15,7 +14,7 @@ export class FoodProvider {
   }
   storeData(data:Array<Food>){
     window.localStorage.setItem('foodsData', JSON.stringify(data));
-  } 
+  }
   readData(){
     try{
       let data = JSON.parse(window.localStorage.getItem('foodsData'));

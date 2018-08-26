@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
-import { Greeter } from '../../models/greet'
 import { FoodProvider} from '../../providers/food/food';
 import { ToastController } from 'ionic-angular';
 
@@ -27,7 +26,7 @@ export class HomePage {
       alert.addInput({
         type: 'radio',
         label: food.name,
-        value: food
+        value: food.id
       });
     });
 
@@ -35,14 +34,17 @@ export class HomePage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
+        //this.testRadioOpen = false;
+        //this.testRadioResult = data;
         //console.log(JSON.stringify(this.listFood));
         if(this.note_recipe.trim().length >0){
           this.listFood.forEach((item)=>{
-            //console.log(JSON.stringify(item.recipes));
-            if(item.name == data.name){
+            //console.log(JSON.stringify(data));
+            //console.log(item.id+'/'+data.id);
+            if(item.id == data){
+              //console.log(JSON.stringify(this.note_recipe));
               let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+
               if(item.recipes.push(tempRecipe)){
                 this.addRecipeDoneMessage();
                 this.note_recipe = "";
@@ -85,7 +87,7 @@ export class HomePage {
                   }
                 });
               }
-            
+
             }
             // console.log(JSON.stringify(item));
           });
