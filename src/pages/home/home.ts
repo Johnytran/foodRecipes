@@ -40,7 +40,7 @@ export class HomePage {
         //console.log(JSON.stringify(this.listFood));
         if(this.note_recipe.trim().length >0){
           this.listFood.forEach((item)=>{
-            console.log(JSON.stringify(item.recipes));
+            //console.log(JSON.stringify(item.recipes));
             if(item.name == data.name){
               let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
               if(item.recipes.push(tempRecipe)){
@@ -56,6 +56,43 @@ export class HomePage {
         }
         //console.log(this.listFood);
       }
+    });
+    alert.present();
+  }
+  removeRecipe(fd: Food, rp: Recipe){
+    let alert = this.atrCtrl.create({
+    title: 'Confirm Delete',
+    message: 'Delete this recipe?',
+    cssClass: "addFood"
+    ,
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.listFood.forEach((food)=>{
+            //console.log(JSON.stringify(item.recipes));
+            if(food.name == fd.name){
+              if(food.recipes.length>0){
+                food.recipes.forEach((recipe)=>{
+                  if(recipe.name == rp.name){
+                    food.recipes.splice(food.recipes.indexOf(rp),1);
+                    this.storage.storeData(this.listFood);
+                    this.removeRecipeDoneMessage();
+                  }
+                });
+              }
+            
+            }
+            // console.log(JSON.stringify(item));
+          });
+          this.storage.storeData(this.listFood);
+        }
+      }
+    ]
     });
     alert.present();
   }
@@ -89,7 +126,20 @@ export class HomePage {
     let toast = this.toastCtrl.create({
       message: 'Food was removed successfully',
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  removeRecipeDoneMessage() {
+    let toast = this.toastCtrl.create({
+      message: 'Recipe was removed successfully',
+      duration: 3000,
+      position: 'bottom'
     });
 
     toast.onDidDismiss(() => {
