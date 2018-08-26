@@ -53,6 +53,9 @@ page-home {
         padding: 0 10px;
       }
     }
+    .row{
+      border-bottom: 1px solid #c3b9b9;
+    }
   }
 }
 .addFood{
@@ -137,4 +140,10 @@ page-home {
   float: right;
   font-size: 12px;
   cursor: pointer;
+}
+.list-md .item-block .item-inner{
+  border: 0;
+}
+ion-item-sliding .item{
+  border-bottom: 1px solid #c3b9b9; 
 }
