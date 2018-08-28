@@ -35,22 +35,22 @@ page-home {
     width: 100%;
     border: 0 !important;
     .category-frame{
-      border: 9px solid transparent;
-      border-image: url(../../assets/template/textarea-border.png) 15 round;
+      .top{
+        background: url(../../assets/template/textarea-border.png) repeat-x;
+      }
+      .bottom{
+        background: url(../../assets/template/textarea-border.png) bottom left repeat-x;
+      }
+      .left{
+        background: url(../../assets/template/textarea-side.png) top left repeat-y;
+      }
+      .right{
+        background: url(../../assets/template/textarea-side.png) top right repeat-y;
+      }
       font-family: 'blokletters_balpenbalpen';
-      padding: 5px;
-      border-left: 0;
-      border-right: 0;
-      padding-left: 0;
-      padding-right: 0;
       h2{
         width: 100%;
-        height: 20px;
-        border: 9px solid transparent;
-        border-image: url(../../assets/template/textarea-side.png) 15 round;
-        border-top: 0;
-        border-bottom: 0;
-        padding: 0 10px;
+        padding: 15px 10px;
       }
     }
     .row{
@@ -63,6 +63,7 @@ page-home {
     background: url(../../assets/template/alert_bg.png) no-repeat;
     background-size: 252px 198px;
     font-family: 'blokletters_balpenbalpen';
+    height: 200px;
     h2{
 
       font-weight: bold;
@@ -72,6 +73,9 @@ page-home {
       border: 0;
       background-size: 200px 39px;
       padding: 10px;
+    }
+    .alert-input-group{
+      padding-bottom: 4px;
     }
   }
   .alert-button-group{
@@ -89,7 +93,13 @@ page-home {
     }
   }
 }
-
+.alert-ios{
+  .alert-wrapper{
+    .alert-input-group{
+      padding-bottom: 24px;
+    }
+  }
+}
 .addRecipe{
   .alert-wrapper{
     background: url(../../assets/template/recipe_bg.png) no-repeat;
@@ -133,8 +143,16 @@ page-home {
       background-size: 44px 40px;
     }
   }
-}
 
+  .alert-radio-button-ios .alert-radio-label{
+    padding-left: 20px;
+  }
+}
+.alert-ios {
+  button.alert-button{
+    background-position: center center!important;
+  }
+}
 .deleteFood{
   font-family: 'blokletters_balpenbalpen';
   float: right;
@@ -145,5 +163,5 @@ page-home {
   border: 0;
 }
 ion-item-sliding .item{
-  border-bottom: 1px solid #c3b9b9; 
+  border-bottom: 1px solid #c3b9b9;
 }
