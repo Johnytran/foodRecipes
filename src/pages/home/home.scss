@@ -10,7 +10,7 @@ page-home {
     width: 100%;
     height: 120px;
     border: 9px solid transparent;
-    border-image: url(../../assets/template/textarea-side.png) 30 round;
+    border-image: url(../assets/template/textarea-side.png) 30 round;
     border-top: 0;
     border-bottom: 0;
     font-family: 'blokletters_balpenbalpen';
@@ -18,7 +18,7 @@ page-home {
   .textarea-frame{
     padding: 0;
     border: 9px solid transparent;
-    border-image: url(../../assets/template/textarea-border.png) 30 round;
+    border-image: url(../assets/template/textarea-border.png) 30 round;
     border-left: 0;
     border-right: 0;
     .text-input{
@@ -26,7 +26,7 @@ page-home {
     }
   }
   .plus_btn{
-    background: url(../../assets/template/circle.png) no-repeat;
+    background: url(../assets/template/circle.png) no-repeat;
     width: 45px;
     height: 45px;
     border: 0;
@@ -36,16 +36,16 @@ page-home {
     border: 0 !important;
     .category-frame{
       .top{
-        background: url(../../assets/template/textarea-border.png) repeat-x;
+        background: url(../assets/template/textarea-border.png) repeat-x;
       }
       .bottom{
-        background: url(../../assets/template/textarea-border.png) bottom left repeat-x;
+        background: url(../assets/template/textarea-border.png) bottom left repeat-x;
       }
       .left{
-        background: url(../../assets/template/textarea-side.png) top left repeat-y;
+        background: url(../assets/template/textarea-side.png) top left repeat-y;
       }
       .right{
-        background: url(../../assets/template/textarea-side.png) top right repeat-y;
+        background: url(../assets/template/textarea-side.png) top right repeat-y;
       }
       font-family: 'blokletters_balpenbalpen';
       h2{
@@ -60,7 +60,7 @@ page-home {
 }
 .addFood{
   .alert-wrapper{
-    background: url(../../assets/template/alert_bg.png) no-repeat;
+    background: url(../assets/template/alert_bg.png) no-repeat;
     background-size: 252px 198px;
     font-family: 'blokletters_balpenbalpen';
     height: 200px;
@@ -69,7 +69,7 @@ page-home {
       font-weight: bold;
     }
     .alert-input{
-      background: url(../../assets/template/alert_input.png) no-repeat;
+      background: url(../assets/template/alert_input.png) no-repeat;
       border: 0;
       background-size: 200px 39px;
       padding: 10px;
@@ -81,7 +81,7 @@ page-home {
   .alert-button-group{
     justify-content: flex-start;
     button{
-      background: url(../../assets/template/alert_btn.png) no-repeat;
+      background: url(../assets/template/alert_btn.png) no-repeat;
       border: 0;
       background-size: 80px 40px;
       span{
@@ -102,7 +102,7 @@ page-home {
 }
 .addRecipe{
   .alert-wrapper{
-    background: url(../../assets/template/recipe_bg.png) no-repeat;
+    background: url(../assets/template/recipe_bg.png) no-repeat;
     background-size: 250px 366px;
     font-family: 'blokletters_balpenbalpen';
     h2{
@@ -110,7 +110,7 @@ page-home {
       font-weight: bold;
     }
     .alert-input{
-      background: url(../../assets/template/alert_input.png) no-repeat;
+      background: url(../assets/template/alert_input.png) no-repeat;
       border: 0;
       background-size: 200px 39px;
       padding: 10px;
@@ -132,7 +132,7 @@ page-home {
   .alert-button-group{
     justify-content: flex-start;
     button{
-      background: url(../../assets/template/alert_btn.png) no-repeat;
+      background: url(../assets/template/alert_btn.png) no-repeat;
       border: 0;
       background-size: 80px 40px;
       span{
