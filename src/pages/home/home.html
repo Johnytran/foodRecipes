@@ -14,17 +14,22 @@
   <form>
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col col-9>
           <div class="textarea-frame">
-            <ion-textarea name="note" class="note" placeholder="Write new things" [(ngModel)]="note_recipe"></ion-textarea>
-        </div>
+              <div class="bottom">
+                <div class="left">
+                  <div class="right">
+                    <ion-textarea name="note" class="note" placeholder="Write new things" [(ngModel)]="note_recipe"></ion-textarea>
+                  </div>
+                </div>
+              </div>
+          </div>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col align="center">
+        <ion-col>
           <button ion-button class="plus_btn" (click) = "addNewRecipe()"></button>
         </ion-col>
       </ion-row>
+
     </ion-grid>
   </form>
   <ion-list>
