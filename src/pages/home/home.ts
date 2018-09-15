@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
+import { ProfilePage } from '../profile/profile'
 import { FoodProvider} from '../../providers/food/food';
 import { ToastController } from 'ionic-angular';
 
-@Component({
+@Component({ 
   selector: 'page-home',
   templateUrl: 'home.html'
 })

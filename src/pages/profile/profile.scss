@@ -1,0 +1,22 @@
+page-profile {
+  .frame{
+    background: url(../../assets/imgs/photo-frame.png)center center no-repeat;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    overflow: hidden;
+  }
+  .outer-bar-progress{
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    height: 20px;
+    .inner{
+      color: #fff;
+      background-color: #2196F3;
+      padding: 0.01em 16px;
+      height: 20px;
+      border-radius: 10px;
+      width: 0;
+    }
+  }
+}

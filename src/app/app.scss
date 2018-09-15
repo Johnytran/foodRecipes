@@ -37,3 +37,13 @@
   position: absolute;
   top: 30px;
 }
+.tabs-md .tab-button, .tabs-md .tab-button[aria-selected=true],
+.tabs-md .tab-button-icon, .tabs-md .tab-button[aria-selected=true] .tab-button-icon{
+  color: #caa17d;
+}
+.button-md{
+  background-color: #caa17d;
+}
+.button-md:hover:not(.disable-hover){
+  background-color: #d0792d;  
+}

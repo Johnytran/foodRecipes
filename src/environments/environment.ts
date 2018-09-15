@@ -4,7 +4,7 @@ export const environment = {
     authDomain: "foodrecipes-1cce0.firebaseapp.com",
     databaseURL: "https://foodrecipes-1cce0.firebaseio.com",
     projectId: "foodrecipes-1cce0",
-    storageBucket: "",
+    storageBucket: "foodrecipes-1cce0.appspot.com",
     messagingSenderId: "861323986078"
   }
 }
