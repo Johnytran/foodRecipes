@@ -17,6 +17,7 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { SigninPage } from '../pages/signin/signin';
+import { ForgotPage } from '../pages/forgot/forgot';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SigninPage } from '../pages/signin/signin';
     HomePage,
     SignupPage,
     SigninPage,
+    ForgotPage,
     ProfilePage,
     TabsPage
 
@@ -42,6 +44,7 @@ import { SigninPage } from '../pages/signin/signin';
     HomePage,
     SignupPage,
     SigninPage,
+    ForgotPage,
     ProfilePage,
     TabsPage,
   ],

@@ -20,10 +20,11 @@ import {Observable} from 'rxjs/Rx';
 export class ProfilePage {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
+  user: Observable<firebase.User>;
   constructor(public navCtrl: NavController,
     public navParams: NavParams, private storage: AngularFireStorage,
     private afAuth: AngularFireAuth) {
-
+    this.user = afAuth.authState;
   }
   signOut(){
     this.afAuth.auth.signOut();

@@ -34,7 +34,7 @@ export class MyApp {
           this.rootPage = TabsPage;
         }else{
         // user is not authenticated
-        this.rootPage = SignupPage;
+        this.rootPage = SigninPage;
       }
       });
     });

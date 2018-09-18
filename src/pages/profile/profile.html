@@ -30,7 +30,15 @@
       </div>
     </ion-col>
     <ion-col col-8>
-      <button ion-button (click) = "signOut()">Sign Out</button>
+      <ion-list>
+        <ion-item>
+          Email: {{(user | async)?.email}}
+        </ion-item>
+        <ion-item>
+          <button ion-button (click) = "signOut()">Sign Out</button>
+        </ion-item>
+      </ion-list>
+
     </ion-col>
   </ion-row>
 </ion-grid>

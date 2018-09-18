@@ -1,16 +1,15 @@
-page-signin {
+page-forgot {
   .content{
     background: #FF512F;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   }
   .list{
     width: 400px;
     margin: auto;
     border-radius: 5px;
     background: #fff;
-    height: 200px;
+    height: 166px;
     background: rgba(255, 255, 255, 0.69);
     .item{
       background: none;
@@ -19,16 +18,5 @@ page-signin {
   h3{
     font-family: 'blokletters_balpenbalpen';
     text-align: center;
-  }
-  .user-support{
-    width: 400px;
-    margin: auto;
-    padding: 17px;
-    a{
-      color: #c92e33;
-    }
-    li{
-      margin-bottom: 5px;
-    }
   }
 }
