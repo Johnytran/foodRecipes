@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs'
 import { AngularFireStorage } from 'angularfire2/storage';
 
 import { SignupPage } from '../pages/signup/signup'
+import { SigninPage } from '../pages/signin/signin'
 import { AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
@@ -27,15 +28,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      // this.afAuth.authState.subscribe((user)=>{
-      //   if(user){
-      //     // user is authenticated
-      //     this.rootPage = HomePage;
-      //   }else{
-      //   // user is not authenticated
-      //   this.rootPage = SignupPage;
-      // }
-      // });
+      this.afAuth.authState.subscribe((user)=>{
+        if(user){
+          // user is authenticated
+          this.rootPage = TabsPage;
+        }else{
+        // user is not authenticated
+        this.rootPage = SignupPage;
+      }
+      });
     });
   }
 }

@@ -5,11 +5,21 @@ page-profile {
     height: 120px;
     padding: 10px;
     overflow: hidden;
+    position: relative;
+    .button{
+      position: absolute;
+      left: 4px;
+      bottom: 3px;
+    }
+  }
+  #fileInput{
+    display: none;
   }
   .outer-bar-progress{
     background-color: #f1f1f1;
     border-radius: 10px;
     height: 20px;
+    width: 121px;
     .inner{
       color: #fff;
       background-color: #2196F3;

@@ -18,12 +18,16 @@
   <ion-row>
     <ion-col>
       <div class="frame">
-        <img src="{{ downloadURL | async }}" width="100" alt="photo"/>
+        <img *ngIf="downloadURL" src="{{ downloadURL | async }}" width="100" alt="photo"/>
+        <label for="fileInput" icon-only ion-button>
+            <ion-icon name="camera"></ion-icon>
+        </label>
       </div>
-      <input type="file" (change)="uploadFile($event)" accept=".png,.jpg">
-      <!-- <div class="outer-bar-progress">
-        <div class="inner" [ngStyle]="{'width': uploadPercent }">{{ uploadPercent | async }}</div>
-      </div> -->
+      <input type="file" id="fileInput" capture="camera" (change)="uploadFile($event)" accept=".png,.jpg">
+
+      <div class="outer-bar-progress">
+        <div class="inner" [ngStyle]="{'width.%': uploadPercent | async}">{{ uploadPercent | async}}</div>
+      </div>
     </ion-col>
     <ion-col col-8>
       <button ion-button (click) = "signOut()">Sign Out</button>

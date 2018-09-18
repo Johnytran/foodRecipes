@@ -20,10 +20,14 @@ import {Observable} from 'rxjs/Rx';
 export class ProfilePage {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: AngularFireStorage) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams, private storage: AngularFireStorage,
+    private afAuth: AngularFireAuth) {
 
   }
-
+  signOut(){
+    this.afAuth.auth.signOut();
+  }
   uploadFile(event) {
     const file = event.target.files[0];
     let filename = file.name.split('.');
@@ -39,14 +43,6 @@ export class ProfilePage {
           finalize(() => this.downloadURL = fileRef.getDownloadURL() )
 
        ).subscribe();
-      // task.snapshotChanges().pipe(
-      //   finalize(() => {
-      //     fileRef.getDownloadURL().subscribe(url => {
-      //       this.downloadURL = url;
-      //       //console.log(url); // <-- do what ever you want with the url..
-      //     });
-      //   })
-      // ).subscribe();
     }else{
       console.log('file not found');
     }
