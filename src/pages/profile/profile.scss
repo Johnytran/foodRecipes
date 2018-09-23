@@ -6,6 +6,10 @@ page-profile {
     padding: 10px;
     overflow: hidden;
     position: relative;
+    img{
+      max-height: 96px;
+      width: auto;
+    }
     .button{
       position: absolute;
       left: 4px;

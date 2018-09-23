@@ -18,7 +18,7 @@
   <ion-row>
     <ion-col>
       <div class="frame">
-        <img *ngIf="downloadURL" src="{{ downloadURL | async }}" width="100" alt="photo"/>
+        <img *ngIf="photo?photo:downloadURL" src="{{ photo?photo:downloadURL | async }}" width="100" alt="photo"/>
         <label for="fileInput" icon-only ion-button>
             <ion-icon name="camera"></ion-icon>
         </label>
@@ -32,9 +32,16 @@
     <ion-col col-8>
       <ion-list>
         <ion-item>
-          Email: {{(user | async)?.email}}
+          <ion-label floating>Display Name</ion-label>
+          <ion-input type="text" [(ngModel)] = "name" value="{{name}}"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" required [(ngModel)] = "email" value="{{email}}"></ion-input>
+
+        </ion-item>
+        <ion-item>
+          <button ion-button (click) = "updateProfile()">Update Info</button>
           <button ion-button (click) = "signOut()">Sign Out</button>
         </ion-item>
       </ion-list>
