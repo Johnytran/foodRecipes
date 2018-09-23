@@ -29,8 +29,10 @@
         <div class="inner" [ngStyle]="{'width.%': uploadPercent | async}">{{ uploadPercent | async}}</div>
       </div>
     </ion-col>
-    <ion-col col-8>
-      <ion-list>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list class="list-profile">
         <ion-item>
           <ion-label floating>Display Name</ion-label>
           <ion-input type="text" [(ngModel)] = "name" value="{{name}}"></ion-input>
@@ -39,8 +41,16 @@
           Email: {{email}}
         </ion-item>
         <ion-item>
-          <button ion-button (click) = "updateProfile()">Update Info</button>
-          <button ion-button (click) = "signOut()">Sign Out</button>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-sm>
+                  <button ion-button (click) = "updateProfile()">Update Info</button>
+              </ion-col>
+              <ion-col col-sm>
+                <button ion-button (click) = "signOut()">Sign Out</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-item>
       </ion-list>
 

@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home'
 import { TabsPage } from '../pages/tabs/tabs'
 import { AngularFireStorage } from 'angularfire2/storage';
 
-import { SignupPage } from '../pages/signup/signup'
 import { SigninPage } from '../pages/signin/signin'
 import { AngularFireAuth} from 'angularfire2/auth';
 
