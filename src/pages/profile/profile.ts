@@ -40,7 +40,6 @@ export class ProfilePage {
   updateProfile(){
     this.afAuth.auth.currentUser.updateProfile({
       displayName: this.name,
-      email: this.email,
       photoURL: this.photo
 
     }).then(() => {
