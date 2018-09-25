@@ -8,6 +8,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { SigninPage } from '../pages/signin/signin'
 import { AngularFireAuth} from 'angularfire2/auth';
 
+
 @Component({
   templateUrl: 'app.html'
 
@@ -15,17 +16,14 @@ import { AngularFireAuth} from 'angularfire2/auth';
 export class MyApp {
   rootPage:any = TabsPage;
   pages: Array<{title: string, component: any}>;
+
   constructor(platform: Platform, statusBar: StatusBar,
     splashScreen: SplashScreen, public storage: AngularFireStorage,
     public afAuth: AngularFireAuth){
-  //constructor(platform: Platform, statusBar: StatusBar,
-    //splashScreen: SplashScreen, public storage: AngularFireStorage) {
-    //splashScreen: SplashScreen, public afAuth: AngularFireAuth) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
       this.afAuth.authState.subscribe((user)=>{
         if(user){
           // user is authenticated

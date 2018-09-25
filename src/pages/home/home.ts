@@ -3,6 +3,7 @@ import { AlertController } from 'ionic-angular';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
 import { FoodProvider} from '../../providers/food/food';
+import { FoodDBProvider} from '../../providers/food/foodDB';
 import { ToastController } from 'ionic-angular';
 
 @Component({
@@ -12,11 +13,26 @@ import { ToastController } from 'ionic-angular';
 export class HomePage {
   public listFood: Array<Food> = [];
   note_recipe: string='';
-  constructor(public atrCtrl: AlertController, public storage: FoodProvider, private toastCtrl: ToastController) {
-    if(this.storage.readData()){
-      this.listFood = this.storage.readData();
-    }
+  constructor(public atrCtrl: AlertController, public storage: FoodProvider,
+    private toastCtrl: ToastController, public storageDB: FoodDBProvider) {
+    // from local storage
+    // if(this.storage.readData()){
+    //   this.listFood = this.storage.readData();
+    // }
     //console.log(JSON.stringify(this.listFood));
+
+    // from firebase
+    this.storageDB.getListFood().then((data)=>{
+      //console.log(data);
+      data.forEach((item)=>{
+        aFood: Food = new Food();
+        aFood.id = item['id'];
+        this.listFood.push(aFood);
+      });
+    }).catch((err: any)=>{
+
+    });
+    console.log(this.listFood);
   }
   addNewRecipe(){
     let alert = this.atrCtrl.create({cssClass: "addRecipe"});

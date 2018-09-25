@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FoodProvider } from '../providers/food/food';
+import { FoodDBProvider } from '../providers/food/foodDB';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
@@ -52,7 +53,8 @@ import { ForgotPage } from '../pages/forgot/forgot';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FoodProvider
+    FoodProvider,
+    FoodDBProvider
   ]
 })
 export class AppModule {}
