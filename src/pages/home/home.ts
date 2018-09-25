@@ -23,7 +23,7 @@ export class HomePage {
 
     // from firebase
     this.storageDB.getListFood().then((data)=>{
-      //console.log(data);
+      console.log(data);
       data.forEach((item)=>{
         let aFood: Food = new Food();
         aFood.id = item['id'];
@@ -197,11 +197,29 @@ export class HomePage {
   }
   addFood(fName:string){
     let aFood:Food = new Food(fName);
+    this.storageDB.addFood(aFood).then((result)=>{
+      this.showMessage(result);
+    }).catch((err: any)=>{
+      this.showMessage(err);
+    });
     //console.log(JSON.stringify(aFood));
-    this.listFood.push(aFood);
+    //this.listFood.push(aFood);
     //this.storage.storeData(this.listFood);
-    
-    this.addFoodDoneMessage();
+
+
+  }
+  showMessage(msg: string){
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
   showAddFood() {
 

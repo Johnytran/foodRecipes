@@ -25,6 +25,15 @@ export class FoodDBProvider {
     });
 
   }
+  addFood(aFood: Food){
+
+    return new Promise((resolve, reject)=>{
+      let result: bool = this.db.object('food/'+aFood.id).set({name: aFood.name});
+      if(result){
+        resolve("the food is added");
+      }
+    });
+  }
   unwrapClasses( classes ){
       let count = Object.keys(classes).length;
       let keys = Object.keys(classes);
