@@ -25,14 +25,19 @@ export class HomePage {
     this.storageDB.getListFood().then((data)=>{
       //console.log(data);
       data.forEach((item)=>{
-        aFood: Food = new Food();
+        let aFood: Food = new Food();
         aFood.id = item['id'];
+        aFood.name = item['name'];
+        let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
+
+        //console.log(recipes);
+        aFood.recipes = recipes;
         this.listFood.push(aFood);
       });
     }).catch((err: any)=>{
 
     });
-    console.log(this.listFood);
+    //console.log(this.listFood);
   }
   addNewRecipe(){
     let alert = this.atrCtrl.create({cssClass: "addRecipe"});
@@ -194,7 +199,8 @@ export class HomePage {
     let aFood:Food = new Food(fName);
     //console.log(JSON.stringify(aFood));
     this.listFood.push(aFood);
-    this.storage.storeData(this.listFood);
+    //this.storage.storeData(this.listFood);
+    
     this.addFoodDoneMessage();
   }
   showAddFood() {

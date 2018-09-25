@@ -3,7 +3,4 @@ export class Recipe{
   constructor(name){
     this.name = name;
   }
-  aaa(){
-    
-  }
 }
