@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { Food } from '../../models/food'
+import { Food } from '../../models/recipe'
 /*
   Generated class for the FoodProvider provider.
 
@@ -32,6 +33,22 @@ export class FoodDBProvider {
       let result: bool = this.db.object('food/'+aFood.id).set({name: aFood.name});
       if(result){
         resolve("the food is added");
+      }else{
+        reject(new Error('error insert'));
+      }
+    });
+  }
+  addRecipe(foodID: string, rp: Recipe){
+
+    return new Promise((resolve, reject)=>{
+      let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
+
+      let recipe = {
+          'name': rp.name
+      };
+      let result: bool = refFood.update(recipe);
+      if(result){
+        resolve("the recipe is added");
       }else{
         reject(new Error('error insert'));
       }

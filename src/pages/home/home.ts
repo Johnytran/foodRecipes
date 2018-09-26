@@ -61,29 +61,34 @@ export class HomePage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        //this.testRadioOpen = false;
-        //this.testRadioResult = data;
-        //console.log(JSON.stringify(this.listFood));
+
         if(this.note_recipe.trim().length >0){
-          this.listFood.forEach((item)=>{
-            //console.log(JSON.stringify(data));
-            //console.log(item.id+'/'+data.id);
-            if(item.id == data){
-              //console.log(JSON.stringify(this.note_recipe));
-              let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+          // this.listFood.forEach((item)=>{
+          //
+          //   if(item.id == data){
+          //     //console.log(JSON.stringify(this.note_recipe));
+          //     let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+          //
+          //     if(item.recipes.push(tempRecipe)){
+          //       this.addRecipeDoneMessage();
+          //       this.note_recipe = "";
+          //     }
+          //   }
+          //
+          // });
+          // this.storage.storeData(this.listFood);
 
-              if(item.recipes.push(tempRecipe)){
-                this.addRecipeDoneMessage();
-                this.note_recipe = "";
-              }
-              //console.log(JSON.stringify(item));
-
-            }
-            // console.log(JSON.stringify(item));
+          let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+          this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
+            this.showMessage(result);
+            this.displayFoodFireBase();
+          }).catch((err: any)=>{
+            this.showMessage(err);
+            console.log(err);
           });
-          this.storage.storeData(this.listFood);
+
         }
-        //console.log(this.listFood);
+
       }
     });
     alert.present();
