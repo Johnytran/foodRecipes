@@ -22,22 +22,28 @@ export class HomePage {
     //console.log(JSON.stringify(this.listFood));
 
     // from firebase
+    this.displayFoodFireBase();
+    //console.log(this.listFood);
+  }
+  displayFoodFireBase(){
+    this.listFood = [];
     this.storageDB.getListFood().then((data)=>{
-      console.log(data);
-      data.forEach((item)=>{
-        let aFood: Food = new Food();
-        aFood.id = item['id'];
-        aFood.name = item['name'];
-        let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
+      //console.log(data.length );
 
-        //console.log(recipes);
-        aFood.recipes = recipes;
+      data.forEach((item)=>{
+        let aFood: Food = new Food(item['name']);
+        aFood.id = item['id'];
+
+        if(typeof item['recipes'] !== "undefined"){
+          let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
+          aFood.recipes = recipes;
+        }
+
         this.listFood.push(aFood);
       });
     }).catch((err: any)=>{
 
     });
-    //console.log(this.listFood);
   }
   addNewRecipe(){
     let alert = this.atrCtrl.create({cssClass: "addRecipe"});
@@ -185,9 +191,15 @@ export class HomePage {
       {
         text: 'Yes',
         handler: () => {
-          this.listFood.splice(this.listFood.indexOf(fd),1);
-          this.storage.storeData(this.listFood);
-          this.removeFoodDoneMessage();
+          //this.listFood.splice(this.listFood.indexOf(fd),1);
+          this.storageDB.removeFood(fd).then((result)=>{
+            this.showMessage(result);
+            this.displayFoodFireBase();
+          }).catch((err: any)=>{
+            this.showMessage(err);
+          });
+          //this.storage.storeData(this.listFood);
+          //this.removeFoodDoneMessage();
           //console.log(this.listFood);
         }
       }
@@ -199,6 +211,7 @@ export class HomePage {
     let aFood:Food = new Food(fName);
     this.storageDB.addFood(aFood).then((result)=>{
       this.showMessage(result);
+      this.displayFoodFireBase();
     }).catch((err: any)=>{
       this.showMessage(err);
     });
