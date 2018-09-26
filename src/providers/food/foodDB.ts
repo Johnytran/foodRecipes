@@ -54,6 +54,19 @@ export class FoodDBProvider {
       }
     });
   }
+
+  removeRecipe(foodID: string, recipeID: string){
+    return new Promise((resolve, reject)=>{
+      console.log('food/'+foodID+'recipes/'+recipeID);
+      let result: bool = this.db.object('food/'+foodID+'/recipes/'+recipeID).remove();
+      if(result){
+        resolve("the recipe is deleted");
+      }else{
+        reject(new Error('error delete'));
+      }
+    });
+  }
+
   removeFood(aFood: Food){
     return new Promise((resolve, reject)=>{
       let result: bool = this.db.object('food/'+aFood.id).remove();

@@ -81,6 +81,7 @@ export class HomePage {
           let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
           this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
             this.showMessage(result);
+            this.note_recipe = "";
             this.displayFoodFireBase();
           }).catch((err: any)=>{
             this.showMessage(err);
@@ -107,23 +108,29 @@ export class HomePage {
       {
         text: 'Yes',
         handler: () => {
-          this.listFood.forEach((food)=>{
-            //console.log(JSON.stringify(item.recipes));
-            if(food.name == fd.name){
-              if(food.recipes.length>0){
-                food.recipes.forEach((recipe)=>{
-                  if(recipe.name == rp.name){
-                    food.recipes.splice(food.recipes.indexOf(rp),1);
-                    this.storage.storeData(this.listFood);
-                    this.removeRecipeDoneMessage();
-                  }
-                });
-              }
-
-            }
-            // console.log(JSON.stringify(item));
+          // this.listFood.forEach((food)=>{
+          //   if(food.name == fd.name){
+          //     if(food.recipes.length>0){
+          //       food.recipes.forEach((recipe)=>{
+          //         if(recipe.name == rp.name){
+          //           food.recipes.splice(food.recipes.indexOf(rp),1);
+          //           this.storage.storeData(this.listFood);
+          //           this.removeRecipeDoneMessage();
+          //         }
+          //       });
+          //     }
+          //
+          //   }
+          //   // console.log(JSON.stringify(item));
+          // });
+          // this.storage.storeData(this.listFood);
+          this.storageDB.removeRecipe(fd.id, rp.id).then((result)=>{
+            this.showMessage(result);
+            this.displayFoodFireBase();
+          }).catch((err: any)=>{
+            this.showMessage(err);
           });
-          this.storage.storeData(this.listFood);
+
         }
       }
     ]
