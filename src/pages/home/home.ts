@@ -29,18 +29,20 @@ export class HomePage {
     this.listFood = [];
     this.storageDB.getListFood().then((data)=>{
       //console.log(data.length );
+      if(Array.isArray(data)){
+        data.forEach((item)=>{
+          let aFood: Food = new Food(item['name']);
+          aFood.id = item['id'];
 
-      data.forEach((item)=>{
-        let aFood: Food = new Food(item['name']);
-        aFood.id = item['id'];
+          if(typeof item['recipes'] !== "undefined"){
+            let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
+            aFood.recipes = recipes;
+          }
 
-        if(typeof item['recipes'] !== "undefined"){
-          let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
-          aFood.recipes = recipes;
-        }
+          this.listFood.push(aFood);
+        });
+      }
 
-        this.listFood.push(aFood);
-      });
     }).catch((err: any)=>{
 
     });
@@ -80,7 +82,7 @@ export class HomePage {
 
           let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
           this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
-            this.showMessage(result);
+            this.showMessage(result.toString());
             this.note_recipe = "";
             this.displayFoodFireBase();
           }).catch((err: any)=>{
@@ -125,7 +127,7 @@ export class HomePage {
           // });
           // this.storage.storeData(this.listFood);
           this.storageDB.removeRecipe(fd.id, rp.id).then((result)=>{
-            this.showMessage(result);
+            this.showMessage(result.toString());
             this.displayFoodFireBase();
           }).catch((err: any)=>{
             this.showMessage(err);
@@ -205,7 +207,7 @@ export class HomePage {
         handler: () => {
           //this.listFood.splice(this.listFood.indexOf(fd),1);
           this.storageDB.removeFood(fd).then((result)=>{
-            this.showMessage(result);
+            this.showMessage(result.toString());
             this.displayFoodFireBase();
           }).catch((err: any)=>{
             this.showMessage(err);
@@ -222,7 +224,7 @@ export class HomePage {
   addFood(fName:string){
     let aFood:Food = new Food(fName);
     this.storageDB.addFood(aFood).then((result)=>{
-      this.showMessage(result);
+      this.showMessage(result.toString());
       this.displayFoodFireBase();
     }).catch((err: any)=>{
       this.showMessage(err);

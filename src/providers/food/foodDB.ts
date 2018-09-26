@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { Food } from '../../models/food'
-import { Food } from '../../models/recipe'
+import { Recipe } from '../../models/recipe'
 /*
   Generated class for the FoodProvider provider.
 
@@ -30,7 +30,7 @@ export class FoodDBProvider {
   addFood(aFood: Food){
 
     return new Promise((resolve, reject)=>{
-      let result: bool = this.db.object('food/'+aFood.id).set({name: aFood.name});
+      let result: any = this.db.object('food/'+aFood.id).set({name: aFood.name});
       if(result){
         resolve("the food is added");
       }else{
@@ -46,7 +46,7 @@ export class FoodDBProvider {
       let recipe = {
           'name': rp.name
       };
-      let result: bool = refFood.update(recipe);
+      let result: any = refFood.update(recipe);
       if(result){
         resolve("the recipe is added");
       }else{
@@ -58,7 +58,7 @@ export class FoodDBProvider {
   removeRecipe(foodID: string, recipeID: string){
     return new Promise((resolve, reject)=>{
       console.log('food/'+foodID+'recipes/'+recipeID);
-      let result: bool = this.db.object('food/'+foodID+'/recipes/'+recipeID).remove();
+      let result: any = this.db.object('food/'+foodID+'/recipes/'+recipeID).remove();
       if(result){
         resolve("the recipe is deleted");
       }else{
@@ -69,7 +69,7 @@ export class FoodDBProvider {
 
   removeFood(aFood: Food){
     return new Promise((resolve, reject)=>{
-      let result: bool = this.db.object('food/'+aFood.id).remove();
+      let result: any = this.db.object('food/'+aFood.id).remove();
       if(result){
         resolve("the food is deleted");
       }else{
