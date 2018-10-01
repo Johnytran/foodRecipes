@@ -6,6 +6,7 @@ import { FoodProvider} from '../../providers/food/food';
 import { FoodDBProvider} from '../../providers/food/foodDB';
 import { ToastController } from 'ionic-angular';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

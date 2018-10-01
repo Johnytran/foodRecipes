@@ -19,6 +19,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { SigninPage } from '../pages/signin/signin';
 import { ForgotPage } from '../pages/forgot/forgot';
+import "froala-editor/js/froala_editor.pkgd.min.js";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ForgotPage } from '../pages/forgot/forgot';
     IonicModule.forRoot(MyApp),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

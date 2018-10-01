@@ -29,6 +29,7 @@
           <div [ngStyle]="{'display': expand}">
             <textarea name="intro" [(ngModel)]="intro" class="intro" placeholder="introduce it more"></textarea>
           </div>
+          <div [froalaEditor]>Hello, Froala!</div>
         </ion-col>
         <ion-col>
           <button ion-button class="plus_btn" (click) = "addNewRecipe()"></button>
@@ -61,6 +62,9 @@
           <ion-item>
             <h2>{{recipe.name}}</h2>
             <div class="intro_text">{{recipe.intro}}</div>
+            <p align="right">
+              <button ion-button color="danger" danger (click)="readmore()">Read more</button>
+            </p>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" danger (click)="removeRecipe(food, recipe)">
