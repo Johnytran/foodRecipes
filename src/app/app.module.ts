@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { SigninPage } from '../pages/signin/signin';
 import { ForgotPage } from '../pages/forgot/forgot';
 import "froala-editor/js/froala_editor.pkgd.min.js";
+//https://github.com/froala/angular-froala-wysiwyg
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
