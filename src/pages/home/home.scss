@@ -18,7 +18,7 @@ page-home {
     border: 1px solid #caa17d;
   }
   .expand_btn{
-    background: url(../../assets/template/arrowDown.png) top center no-repeat;
+    background: url(../assets/template/arrowDown.png) top center no-repeat;
     width: 43px;
     height: 48px;
   }
@@ -27,7 +27,7 @@ page-home {
   }
 
   .expand_btn:hover:not(.disable-hover){
-    background: url(../../assets/template/arrowDownHover.png) center center no-repeat;
+    background: url(../assets/template/arrowDownHover.png) center center no-repeat;
   }
   .textarea-frame{
     padding: 0;
@@ -190,8 +190,8 @@ ion-item-sliding .item{
 .toastAfterHeader{
     .toast-wrapper{
       transform: translateY(477%) !important;
-      background: url(../../assets/template/bubble.png) no-repeat;
-      width: 73%;
+      background: url(../assets/template/bubble.png) no-repeat;
+      width: 70%;
       padding: 0 10px;
       .toast-message{
         color: #461313;
