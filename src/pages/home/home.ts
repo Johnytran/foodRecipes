@@ -13,6 +13,8 @@ import { ToastController } from 'ionic-angular';
 export class HomePage {
   public listFood: Array<Food> = [];
   note_recipe: string='';
+  expand: string='none';
+  intro: string;
   constructor(public atrCtrl: AlertController, public storage: FoodProvider,
     private toastCtrl: ToastController, public storageDB: FoodDBProvider) {
     // from local storage
@@ -24,6 +26,28 @@ export class HomePage {
     // from firebase
     this.displayFoodFireBase();
     //console.log(this.listFood);
+    this.showMessageGuide('Add recipe intro','midle');
+  }
+  showMessageGuide(msg: string, ps: string){
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top',
+      cssClass: 'toastAfterHeader'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  expandIntro(){
+    if(this.expand=='none'){
+      this.expand = 'block';
+    }else{
+      this.expand = 'none';
+    }
   }
   displayFoodFireBase(){
     this.listFood = [];
@@ -81,6 +105,8 @@ export class HomePage {
           // this.storage.storeData(this.listFood);
 
           let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
+          tempRecipe.intro = this.intro;
+          //console.log(this.intro);
           this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
             this.showMessage(result.toString());
             this.note_recipe = "";

@@ -44,8 +44,10 @@ export class FoodDBProvider {
       let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
 
       let recipe = {
-          'name': rp.name
+          'name': rp.name,
+          'intro': rp.intro
       };
+      //console.log(recipe);
       let result: any = refFood.update(recipe);
       if(result){
         resolve("the recipe is added");

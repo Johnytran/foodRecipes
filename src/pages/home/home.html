@@ -19,10 +19,15 @@
               <div class="bottom">
                 <div class="left">
                   <div class="right">
-                    <ion-textarea name="note" class="note" placeholder="Write new things" [(ngModel)]="note_recipe"></ion-textarea>
+                    <ion-textarea name="note" class="note" placeholder="Write a new recipe" [(ngModel)]="note_recipe"></ion-textarea>
+                    <button ion-button class="expand_btn" (click) = "expandIntro()"></button>
+
                   </div>
                 </div>
               </div>
+          </div>
+          <div [ngStyle]="{'display': expand}">
+            <textarea name="intro" [(ngModel)]="intro" class="intro" placeholder="introduce it more"></textarea>
           </div>
         </ion-col>
         <ion-col>
@@ -55,6 +60,7 @@
         <ion-item-sliding *ngFor="let recipe of food.recipes">
           <ion-item>
             <h2>{{recipe.name}}</h2>
+            <div class="intro_text">{{recipe.intro}}</div>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" danger (click)="removeRecipe(food, recipe)">
