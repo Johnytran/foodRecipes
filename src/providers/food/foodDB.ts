@@ -3,6 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
+import { AngularFireAuth} from 'angularfire2/auth';
 /*
   Generated class for the FoodProvider provider.
 
@@ -12,7 +13,8 @@ import { Recipe } from '../../models/recipe'
 @Injectable()
 export class FoodDBProvider {
   items: Observable<any[]>;
-  constructor(public db: AngularFireDatabase) {
+  constructor(public db: AngularFireDatabase,
+              private afAuth: AngularFireAuth) {
   }
   getListFood(){
     return new Promise((resolve, reject)=>{
@@ -30,12 +32,22 @@ export class FoodDBProvider {
   addFood(aFood: Food){
 
     return new Promise((resolve, reject)=>{
-      let result: any = this.db.object('food/'+aFood.id).set({name: aFood.name});
-      if(result){
-        resolve("the food is added");
-      }else{
-        reject(new Error('error insert'));
-      }
+      let foodRef: any = this.db.object('food/'+aFood.id);
+
+      this.afAuth.authState.subscribe((user)=>{
+        if(user){
+          // user is authenticated
+          //console.log(user.uid);
+
+          let result: any = foodRef.set({name: aFood.name, userID: user.uid});
+          if(result){
+            resolve("the food is added");
+          }else{
+            reject(new Error('error insert'));
+          }
+        }
+      });
+
     });
   }
   addRecipe(foodID: string, rp: Recipe){

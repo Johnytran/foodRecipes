@@ -28,7 +28,7 @@ export class SigninPage {
       .signInWithEmailAndPassword(this.email, this.password)
       .then(value => {
         this.email = this.password = '';
-        this.showMessage('Nice, it worked!');
+        this.showMessage('Nice, Welcome to recipe world!');
       })
       .catch(err => {
         this.showMessage('Something went wrong: '+ err.message);

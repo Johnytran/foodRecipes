@@ -18,6 +18,7 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { environment } from '../environments/environment';
 import { SigninPage } from '../pages/signin/signin';
+import { RecipePage } from '../pages/recipe/recipe';
 import { ForgotPage } from '../pages/forgot/forgot';
 import "froala-editor/js/froala_editor.pkgd.min.js";
 //https://github.com/froala/angular-froala-wysiwyg
@@ -31,6 +32,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     SigninPage,
     ForgotPage,
     ProfilePage,
+    RecipePage,
     TabsPage
 
   ],
@@ -52,6 +54,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     SigninPage,
     ForgotPage,
     ProfilePage,
+    RecipePage,
     TabsPage,
   ],
   providers: [

@@ -12,6 +12,12 @@ export class FoodProvider {
   constructor() {
     console.log('Hello FoodProvider Provider');
   }
+  storeSetting(guide:string){
+    window.localStorage.setItem('showGuide', guide);
+  }
+  readSetting(){
+    return window.localStorage.getItem('showGuide');
+  }
   storeData(data:Array<Food>){
     window.localStorage.setItem('foodsData', JSON.stringify(data));
   }

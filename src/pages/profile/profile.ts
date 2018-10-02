@@ -22,9 +22,9 @@ export class ProfilePage {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   user: Observable<firebase.User>;
-  email: string;
-  name: string;
-  photo: string;
+  email: string='';
+  name: string='';
+  photo: string='';
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams, private storage: AngularFireStorage,
@@ -34,7 +34,7 @@ export class ProfilePage {
       this.photo = data.photoURL;
       this.email = data.email;
       this.name = data.displayName;
-      console.log(data);
+      //console.log(data);
     });
   }
   updateProfile(){

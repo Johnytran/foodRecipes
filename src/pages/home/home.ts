@@ -5,7 +5,8 @@ import { Recipe } from '../../models/recipe'
 import { FoodProvider} from '../../providers/food/food';
 import { FoodDBProvider} from '../../providers/food/foodDB';
 import { ToastController } from 'ionic-angular';
-
+import { NavController } from 'ionic-angular';
+import { RecipePage } from '../recipe/recipe'
 
 @Component({
   selector: 'page-home',
@@ -15,8 +16,9 @@ export class HomePage {
   public listFood: Array<Food> = [];
   note_recipe: string='';
   expand: string='none';
-  intro: string;
-  constructor(public atrCtrl: AlertController, public storage: FoodProvider,
+  intro: string='';
+  constructor(public navCtrl: NavController, public atrCtrl: AlertController,
+    public storage: FoodProvider,
     private toastCtrl: ToastController, public storageDB: FoodDBProvider) {
     // from local storage
     // if(this.storage.readData()){
@@ -27,7 +29,22 @@ export class HomePage {
     // from firebase
     this.displayFoodFireBase();
     //console.log(this.listFood);
-    this.showMessageGuide('Add recipe intro','midle');
+    let showGuide: string = '';
+    showGuide = this.storage.readSetting();
+    if(showGuide!='yes'){
+      this.showMessageGuide('Add recipe intro','midle');
+      this.storage.storeSetting('yes');
+    }
+
+  }
+  readmore(food: Food, recipe: Recipe){
+    //console.log(food);
+    let tmpFood: Food = new Food(food.name);
+    tmpFood.id = food.id;
+    tmpFood.uid = food.uid;
+    tmpFood.addRecipe(recipe);
+    //console.log(tmpFood);
+    this.navCtrl.push(RecipePage, {food: tmpFood});
   }
   showMessageGuide(msg: string, ps: string){
     let toast = this.toastCtrl.create({
@@ -58,7 +75,7 @@ export class HomePage {
         data.forEach((item)=>{
           let aFood: Food = new Food(item['name']);
           aFood.id = item['id'];
-
+          aFood.uid = item['uid'];
           if(typeof item['recipes'] !== "undefined"){
             let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
             aFood.recipes = recipes;
@@ -107,7 +124,7 @@ export class HomePage {
 
           let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
           tempRecipe.intro = this.intro;
-          //console.log(this.intro);
+          console.log(this.intro);
           this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
             this.showMessage(result.toString());
             this.note_recipe = "";

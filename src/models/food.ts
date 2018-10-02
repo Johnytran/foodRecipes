@@ -2,6 +2,7 @@ import { Recipe } from '../models/recipe';
 export class Food{
   id: string;
   name: string;
+  uid: string;
   recipes: Array<Recipe>=[];
   constructor(name){
     this.name = name;
