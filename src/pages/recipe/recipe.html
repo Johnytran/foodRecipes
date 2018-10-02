@@ -16,5 +16,7 @@
 <ion-content padding>
   <h1>{{foodPass.name}}</h1>
   <h2>{{foodPass.recipes[0].name}}</h2>
-  <div *ngIf="uid" [froalaEditor]></div>
+  <p>{{uid}}</p>
+  <p>{{foodPass.uid}}</p>
+  <div *ngIf="uid==foodPass.uid" [froalaEditor]></div>
 </ion-content>

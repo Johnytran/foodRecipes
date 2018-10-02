@@ -29,7 +29,7 @@ export class RecipePage {
         this.uid = user.uid;
       }
     });
-    console.log(this.foodPass);
+    //console.log(this.foodPass.uid);
   }
 
   ionViewDidLoad() {

@@ -72,10 +72,11 @@ export class HomePage {
     this.storageDB.getListFood().then((data)=>{
       //console.log(data.length );
       if(Array.isArray(data)){
+        //console.log(data);
         data.forEach((item)=>{
           let aFood: Food = new Food(item['name']);
           aFood.id = item['id'];
-          aFood.uid = item['uid'];
+          aFood.uid = item['userID'];
           if(typeof item['recipes'] !== "undefined"){
             let recipes:any = this.storageDB.unwrapClasses(item['recipes']);
             aFood.recipes = recipes;
