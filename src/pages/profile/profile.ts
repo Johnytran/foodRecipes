@@ -31,13 +31,19 @@ export class ProfilePage {
     private afAuth: AngularFireAuth, private toastCtrl: ToastController) {
     this.user = afAuth.authState;
     this.afAuth.authState.subscribe(data => {
-      this.photo = data.photoURL;
-      this.email = data.email;
-      this.name = data.displayName;
+      //console.log(data);
+      if(data!= null){
+        this.photo = data.photoURL;
+        this.email = data.email;
+        this.name = data.displayName;
+      }
       //console.log(data);
     });
   }
   updateProfile(){
+    if(this.photo==null){
+      this.photo = '';
+    }
     this.afAuth.auth.currentUser.updateProfile({
       displayName: this.name,
       photoURL: this.photo

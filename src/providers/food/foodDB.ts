@@ -69,6 +69,25 @@ export class FoodDBProvider {
     });
   }
 
+  updateRecipe(foodID: string, rp: Recipe){
+
+    return new Promise((resolve, reject)=>{
+      let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
+
+      let recipe = {
+          'name': rp.name,
+          'intro': rp.intro,
+          'description': rp.description
+      };
+      //console.log(recipe);
+      let result: any = refFood.update(recipe);
+      if(result){
+        resolve("the recipe is updated");
+      }else{
+        reject(new Error('error updating'));
+      }
+    });
+  }
   removeRecipe(foodID: string, recipeID: string){
     return new Promise((resolve, reject)=>{
       console.log('food/'+foodID+'recipes/'+recipeID);

@@ -16,7 +16,14 @@
 <ion-content padding>
   <h1>{{foodPass.name}}</h1>
   <h2>{{foodPass.recipes[0].name}}</h2>
-  <p>{{uid}}</p>
-  <p>{{foodPass.uid}}</p>
-  <div *ngIf="uid==foodPass.uid" [froalaEditor]></div>
+  <h4>Intro text</h4>
+
+  <ion-textarea *ngIf="uid==foodPass.uid" [(ngModel)]="intro_text" class="intro_text" value="{{foodPass.recipes[0].name}}"></ion-textarea>
+  <div *ngIf="uid!=foodPass.uid">
+    {{foodPass.recipes[0].intro}}
+  </div>
+  <h4>Description</h4>
+  <div *ngIf="uid==foodPass.uid" [froalaEditor]='options' [(froalaModel)]="htmlContent" #froala></div>
+  <div *ngIf="uid!=foodPass.uid" innerHtml="{{foodPass.recipes[0].description}}"></div>
+  <p *ngIf="uid==foodPass.uid"><button ion-button (click) = "updateRecipe()">Update Recipe</button></p>
 </ion-content>

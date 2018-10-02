@@ -125,7 +125,7 @@ export class HomePage {
 
           let tempRecipe: Recipe = new Recipe(this.note_recipe.trim());
           tempRecipe.intro = this.intro;
-          console.log(this.intro);
+          //console.log(this.intro);
           this.storageDB.addRecipe(data, tempRecipe).then((result)=>{
             this.showMessage(result.toString());
             this.note_recipe = "";
