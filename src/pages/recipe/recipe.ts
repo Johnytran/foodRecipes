@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Food } from '../../models/food'
 import { AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Rx';
 import { ToastController } from 'ionic-angular';
