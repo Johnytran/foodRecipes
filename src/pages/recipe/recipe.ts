@@ -23,7 +23,10 @@ export class RecipePage {
   user: Observable<firebase.User>;
   uid: string='';
   htmlContent: string='';
-  intro_text: string=''
+  intro_text: string='';
+  options: Object = {
+          toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'color', 'emoticons', '-', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '-', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo']
+  };
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private afAuth: AngularFireAuth, private toastCtrl: ToastController,
   public storageDB: FoodDBProvider) {
