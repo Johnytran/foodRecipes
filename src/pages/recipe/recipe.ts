@@ -6,6 +6,7 @@ import { ToastController } from 'ionic-angular';
 import { FoodDBProvider} from '../../providers/food/foodDB';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
+import { AngularFireStorage } from 'angularfire2/storage';
 /**
  * Generated class for the RecipePage page.
  *
@@ -18,6 +19,7 @@ import { Recipe } from '../../models/recipe'
   selector: 'page-recipe',
   templateUrl: 'recipe.html',
 })
+
 export class RecipePage {
   foodPass: Food;
   user: Observable<firebase.User>;
@@ -25,11 +27,41 @@ export class RecipePage {
   htmlContent: string='';
   intro_text: string='';
   options: Object = {
+    placeholder: "Recipe described here",
+    events : {
+      'froalaEditor.image.beforeUpload' : function(e, editor, response) {
+        //var url = parseResponse(response);
+      },
+      'froalaEditor.image.inserted' : function(e, editor, img, response) {
+        //console.log(img);
+      }
+    },
+    charCounterCount: true,
+    // Set the image upload parameter.
+    imageUploadParam: 'image_param',
+
+    // Set the image upload URL.
+    //imageUploadURL: '/recipes_article',
+
+    // Additional upload params.
+    imageUploadParams: {id: 'froala'},
+
+    // Set request type.
+    imageUploadMethod: 'POST',
+
+    // Set max image size to 5MB.
+    imageMaxSize: 5 * 1024 * 1024,
+
+    // Allow to upload PNG and JPG.
+    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
           toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'color', 'emoticons', '-', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '-', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo']
   };
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private afAuth: AngularFireAuth, private toastCtrl: ToastController,
-  public storageDB: FoodDBProvider) {
+            private afAuth: AngularFireAuth, private toastCtrl: ToastController,
+            public storageDB: FoodDBProvider, private storage: AngularFireStorage) {
+      FileReader.prototype.addEventListener = function (eventType, event) {
+         this.onloadend = event;
+       };
     this.foodPass = this.navParams.get('food');
     this.intro_text = this.foodPass.recipes[0].intro;
     this.htmlContent = this.foodPass.recipes[0].description;
@@ -52,7 +84,7 @@ export class RecipePage {
       //console.log(this.intro);
       this.storageDB.updateRecipe(this.foodPass.id, tempRecipe).then((result)=>{
         this.showMessage(result.toString());
-        this.htmlContent = "";
+
 
       }).catch((err: any)=>{
         this.showMessage(err);
