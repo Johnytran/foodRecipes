@@ -17,98 +17,156 @@ export class FoodDBProvider {
               private afAuth: AngularFireAuth) {
   }
   getListFood(){
-    return new Promise((resolve, reject)=>{
-      this.db.object('food').snapshotChanges().subscribe( (action) => {
-        if( action.payload.val() ){
-          resolve( this.unwrapClasses( action.payload.val() ) );
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          this.db.object('food').snapshotChanges().subscribe( (action) => {
+            try{
+              if( action.payload.val() ){
+                resolve( this.unwrapClasses( action.payload.val() ) );
+              }
+              else{
+                reject(new Error('no data'));
+              }
+            }catch{}
+
+          });
+        }catch(error){
+          console.log(error);
+          return null;
         }
-        else{
-          reject(new Error('no data'));
-        }
+
       });
-    });
+    }catch{}
+
 
   }
   addFood(aFood: Food){
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          let foodRef: any = this.db.object('food/'+aFood.id);
 
-    return new Promise((resolve, reject)=>{
-      let foodRef: any = this.db.object('food/'+aFood.id);
+          this.afAuth.authState.subscribe((user)=>{
+            if(user){
+              // user is authenticated
+              //console.log(user.uid);
 
-      this.afAuth.authState.subscribe((user)=>{
-        if(user){
-          // user is authenticated
-          //console.log(user.uid);
+              let result: any = foodRef.set({name: aFood.name, userID: user.uid});
+              if(result){
+                resolve("the food is added");
+              }else{
+                reject(new Error('error insert'));
+              }
+            }
+          });
+        }catch(error){
+          console.log(error);
+          return null;
+        }
+      });
+    }catch{}
 
-          let result: any = foodRef.set({name: aFood.name, userID: user.uid});
+
+
+  }
+  addRecipe(foodID: string, rp: Recipe){
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
+
+          let recipe = {
+              'name': rp.name,
+              'intro': rp.intro
+          };
+          //console.log(recipe);
+          let result: any = refFood.update(recipe);
           if(result){
-            resolve("the food is added");
+            resolve("the recipe is added");
           }else{
             reject(new Error('error insert'));
           }
+        }catch(error){
+          console.log(error);
+          return null;
         }
       });
+    }catch{}
 
-    });
-  }
-  addRecipe(foodID: string, rp: Recipe){
 
-    return new Promise((resolve, reject)=>{
-      let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
 
-      let recipe = {
-          'name': rp.name,
-          'intro': rp.intro
-      };
-      //console.log(recipe);
-      let result: any = refFood.update(recipe);
-      if(result){
-        resolve("the recipe is added");
-      }else{
-        reject(new Error('error insert'));
-      }
-    });
   }
 
   updateRecipe(foodID: string, rp: Recipe){
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
 
-    return new Promise((resolve, reject)=>{
-      let refFood = this.db.object('food/'+foodID+'/recipes/'+rp.id);
+          let recipe = {
+              'name': rp.name,
+              'intro': rp.intro,
+              'description': rp.description
+          };
+          //console.log(recipe);
+          let result: any = refFood.update(recipe);
+          if(result){
+            resolve("the recipe is updated");
+          }else{
+            reject(new Error('error updating'));
+          }
 
-      let recipe = {
-          'name': rp.name,
-          'intro': rp.intro,
-          'description': rp.description
-      };
-      //console.log(recipe);
-      let result: any = refFood.update(recipe);
-      if(result){
-        resolve("the recipe is updated");
-      }else{
-        reject(new Error('error updating'));
-      }
-    });
+        }catch(error){
+          console.log(error);
+          return null;
+        }
+      });
+    }catch{}
+
+
   }
   removeRecipe(foodID: string, recipeID: string){
-    return new Promise((resolve, reject)=>{
-      console.log('food/'+foodID+'recipes/'+recipeID);
-      let result: any = this.db.object('food/'+foodID+'/recipes/'+recipeID).remove();
-      if(result){
-        resolve("the recipe is deleted");
-      }else{
-        reject(new Error('error delete'));
-      }
-    });
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          //console.log('food/'+foodID+'recipes/'+recipeID);
+          let result: any = this.db.object('food/'+foodID+'/recipes/'+recipeID).remove();
+          if(result){
+            resolve("the recipe is deleted");
+          }else{
+            reject(new Error('error delete'));
+          }
+        }catch(error){
+          console.log(error);
+          return null;
+        }
+      });
+    }catch{}
+
+
+
   }
 
   removeFood(aFood: Food){
-    return new Promise((resolve, reject)=>{
-      let result: any = this.db.object('food/'+aFood.id).remove();
-      if(result){
-        resolve("the food is deleted");
-      }else{
-        reject(new Error('error delete'));
-      }
-    });
+    try{
+      return new Promise((resolve, reject)=>{
+        try{
+          let result: any = this.db.object('food/'+aFood.id).remove();
+          if(result){
+            resolve("the food is deleted");
+          }else{
+            reject(new Error('error delete'));
+          }
+        }catch(error){
+          console.log(error);
+          return null;
+        }
+      });
+    }catch{}
+
+
+
   }
   unwrapClasses( classes ){
       let count = Object.keys(classes).length;

@@ -29,12 +29,12 @@ export class HomePage {
     // from firebase
     this.displayFoodFireBase();
     //console.log(this.listFood);
-    let showGuide: string = '';
-    showGuide = this.storage.readSetting();
-    if(showGuide!='yes'){
-      this.showMessageGuide('Add recipe intro','midle');
-      this.storage.storeSetting('yes');
-    }
+    // let showGuide: string = '';
+    // showGuide = this.storage.readSetting();
+    // if(showGuide!='yes'){
+    //   this.showMessageGuide('Add recipe intro','midle');
+    //   this.storage.storeSetting('yes');
+    // }
 
   }
   readmore(food: Food, recipe: Recipe){
@@ -87,7 +87,8 @@ export class HomePage {
       }
 
     }).catch((err: any)=>{
-
+      this.showMessage(err);
+      console.log(err);
     });
   }
   addNewRecipe(){

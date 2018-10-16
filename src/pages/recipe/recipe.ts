@@ -6,7 +6,7 @@ import { ToastController } from 'ionic-angular';
 import { FoodDBProvider} from '../../providers/food/foodDB';
 import { Food } from '../../models/food'
 import { Recipe } from '../../models/recipe'
-import { AngularFireStorage } from 'angularfire2/storage';
+
 /**
  * Generated class for the RecipePage page.
  *
@@ -58,7 +58,7 @@ export class RecipePage {
   };
   constructor(public navCtrl: NavController, public navParams: NavParams,
             private afAuth: AngularFireAuth, private toastCtrl: ToastController,
-            public storageDB: FoodDBProvider, private storage: AngularFireStorage) {
+            public storageDB: FoodDBProvider) {
       FileReader.prototype.addEventListener = function (eventType, event) {
          this.onloadend = event;
        };
